@@ -53,7 +53,7 @@ cancelledBy:{
 otp:{type:String,default:null},
 isOtpVerification:{type:Boolean,default:false},
 
-estimatedPrice:{type:NUmber,default:0},
+estimatedPrice:{type:Number,default:0},
 finalPrice:{type:Number,default:0},
 distance:{type:Number,default:0},
 
@@ -83,4 +83,4 @@ isReviewed:{type:Boolean, default:false},
 providerNotes:{type:String,default:null}
 },{ timestamps: true});
 
-module.exports=mongoose.model('ServiceRrquest',serviceRequest);
+module.exports=mongoose.model('ServiceRequest',serviceRequestSchema);
