@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/User');
+const User = require('../models/user');
 const ServiceProvider = require('../models/ServiceProvider');
 const Notification = require('../models/Notification');
 
@@ -77,7 +77,7 @@ const registerUser = async (req, res) => {
 // ─────────────────────────────────────
 const loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email,password } = req.body;
 
     if (!email || !password) {
       return res.status(400).json({ message: 'Please provide email and password' });
@@ -206,7 +206,7 @@ const registerProvider = async (req, res) => {
 // ─────────────────────────────────────
 const loginProvider = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email,password } = req.body;
 
     if (!email || !password) {
       return res.status(400).json({ message: 'Please provide email and password' });

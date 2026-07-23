@@ -10,7 +10,7 @@ const serviceProviderSchema = new mongoose.Schema({
         type:String,
         required:true,
         unique:true,
-        loweercase:true,
+        lowercase:true,
         trim:true,
     },
     password:{
@@ -71,7 +71,10 @@ const serviceProviderSchema = new mongoose.Schema({
         certificate:{type:String,default:null},
         idproof:{type:String,default:null}
     },
-    isAvailable:{type:String,default:true},
+    isAvailable: {
+    type: Boolean,
+    default: true
+    },
     workingHours:{
         from:{type:String,default:"08:00"},
         to:{type:String,default:"20:00"}
@@ -100,13 +103,15 @@ const serviceProviderSchema = new mongoose.Schema({
 },{timestamps:true});
 
 //Hash password before saving
-serviceProviderSchema.pre('save',async function(){
-  if(!this.isModified('password'))return;
-  this.password=await bcrypt.hash(this.password,10);
+serviceProviderSchema.pre('save', async function () {
+  if (!this.isModified('password')) return;
+  this.password = await bcrypt.hash(this.password, 10);
 });
 
-serviceProviderSchema.methods.matchPassword = async function (enteredPassword){
-  return await bcrypt.compare(enteredpassword,this.password);
+serviceProviderSchema.methods.matchPassword = async function (enteredPassword) {
+  return await bcrypt.compare(enteredPassword, this.password);
 };
 
-module.exports=mongoose.model('ServiceProvider',serviceProviderSchema)
+module.exports =
+  mongoose.models.ServiceProvider ||
+  mongoose.model('ServiceProvider', serviceProviderSchema);
