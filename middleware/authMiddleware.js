@@ -1,16 +1,17 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const ServiceProvider=require('../models/ServiceProvider');
-const protect=async(req,res,next)=>{
+const protect = async (req, res, next) => {
+    console.log('PROTECT MIDDLEWARE HIT');
     let token;
-    if(
+    if (
         req.headers.authorization &&
         req.headers.authorization.startsWith('Bearer')
-    ){
-        try{
+    ) {
+        try {
             token = req.headers.authorization.split(' ')[1];
-            const decoded=jwt.verify(token,process.env.JWT_SECRET);
-            req.user = await User.findById(decoded.id).select('-password');
+            console.log('TOKEN:', token);
+            const decoded = jwt.verify(token, process.env.JWT_SECRET);
             if(!req.user){
                 req.user=await ServiceProvider
                 .findById(decoded.id)
