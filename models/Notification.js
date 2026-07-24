@@ -1,12 +1,13 @@
 const mongoose = require('mongoose');
+
 const notificationSchema = new mongoose.Schema({
     receiverId: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
     },
     receiverType: {
         type: String,
-        enum: ['user','provider','admin'],
+        enum: ['user', 'provider', 'admin'],
         required: true
     },
     title: {
@@ -17,31 +18,32 @@ const notificationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    type:{
+    type: {
         type: String,
-        enum:[
-            'requested_created',
-            'requested_accepted',
+        enum: [
+            'request_created',
+            'request_accepted',
             'request_ongoing',
             'request_completed',
             'request_cancelled',
             'payment_received',
-            'review received',
+            'review_received',
             'account_verified',
             'general'
         ],
         default: 'general'
     },
-    referenceId:{
+    referenceId: {
         type: mongoose.Schema.Types.ObjectId,
         default: null
     },
-    referenceType:{
+    referenceType: {
         type: String,
-        enum:['ServiceRequest','Payment','Review',null],
-        default:null
+        enum: ['ServiceRequest', 'Payment', 'Review', null],
+        default: null
     },
-    isRead:{type:Boolean,default:false},
-    readAt:{type:Date,default:null}
-}, {timestamps:true});
-module.exports=mongoose.model('Notifications',notificationSchema);
+    isRead: { type: Boolean, default: false },
+    readAt: { type: Date, default: null }
+}, { timestamps: true });
+
+module.exports = mongoose.model('Notifications', notificationSchema);
