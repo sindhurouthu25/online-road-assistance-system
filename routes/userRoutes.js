@@ -15,7 +15,7 @@ const{
 
 const {protect} = require('../middleware/authMiddleware');
 
-router.get('/dashboard',protect, getUserDashboard);
+router.get('/dashboard', protect, getUserDashboard);
 router.get('/profile',protect, getUserProfile);
 router.put('/profile',protect, updateUserProfile);
 router.delete('/account',protect, deleteAccount);
